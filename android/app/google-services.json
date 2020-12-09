@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1005924089514",
+    "project_id": "kingcode-118df",
+    "storage_bucket": "kingcode-118df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005924089514:android:ffd9027aa8bc62310e9ad3",
+        "android_client_info": {
+          "package_name": "com.armasdev.kingcode"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005924089514-r8n6nnlrc3r3eueuhck95vjg5jgdi291.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.armasdev.kingcode",
+            "certificate_hash": "8cf506c8de182276781f3d8c22471648a7326bb2"
+          }
+        },
+        {
+          "client_id": "1005924089514-s6ep7eu4htqdt54vho4n7vla8ogvq1bj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.armasdev.kingcode",
+            "certificate_hash": "9322dd579742d15a60ef309d35d9a38e4b3f07ed"
+          }
+        },
+        {
+          "client_id": "1005924089514-5m3be542ujr12tq88biqkb1gbgo7tlvr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNk3C9qMvI7yq9rtFzJ2QIZdMCyjUGoBQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1005924089514-5m3be542ujr12tq88biqkb1gbgo7tlvr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
