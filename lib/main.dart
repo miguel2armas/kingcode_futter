@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
 import 'dart:async';
 import 'State/login_state.dart';
+import 'State/theme_state.dart';
 import 'src/login/loginapp.dart';
 
 void main() {
@@ -12,18 +13,26 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => LoginIn()),
+        ChangeNotifierProvider(create: (_) => ThemeState()),
+
       ],
-      child: MaterialApp(
-          theme: ThemeData(primaryColor: Color.fromRGBO(24, 24, 24, 1)),
-          localizationsDelegates: [],
-          supportedLocales: [
-            const Locale('es', 'CO'), // Colombia
-            const Locale('en', 'US'), // English
-          ],
-          debugShowCheckedModeBanner: false,
-          home: SplashScreen()),
+      child: MyApp(),
     ),
   );
+}
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: [],
+        supportedLocales: [
+          const Locale('es', 'CO'), // Colombia
+          const Locale('en', 'US'), // English
+        ],
+        theme: context.watch<ThemeState>().currentTheme ? ThemeData.dark() : ThemeData.light(),
+        home: SplashScreen());
+  }
 }
 
 class SplashScreen extends StatefulWidget {
