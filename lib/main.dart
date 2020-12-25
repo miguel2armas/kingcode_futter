@@ -25,17 +25,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        localizationsDelegates: [],
+        /*localizationsDelegates: [],
         supportedLocales: [
           const Locale('es', 'CO'), // Colombia
           const Locale('en', 'US'), // English
-        ],
+        ],*/
         theme: context.watch<ThemeState>().currentTheme ? ThemeData.dark() : ThemeData.light(),
         home: SplashScreen());
   }
 }
 
 class SplashScreen extends StatefulWidget {
+
   const SplashScreen({Key key}) : super(key: key);
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -44,6 +45,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    context.read<ThemeState>().themeValueInitApp();
     initlogin();
     super.initState();
   }
