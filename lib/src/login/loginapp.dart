@@ -33,9 +33,13 @@ class _LogInAppState extends State<LogInApp> {
     _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
       setState(() {
         _currentUser = account;
+
       });
       if (_currentUser != null) {
-        _handleGetContact();
+        print('logeado ${_currentUser.displayName}');
+        print('logeado ${_currentUser.id}');
+        print('logeado ${_currentUser.email}');
+        print('logeado ${_currentUser.photoUrl}');
       }
     });
     _googleSignIn.signInSilently();
@@ -53,58 +57,10 @@ class _LogInAppState extends State<LogInApp> {
       },
     );
   }
-  Future<void> _handleGetContact() async {
-    setState(() {
-      _contactText = "Loading contact info...";
-    });
-    final http.Response response = await http.get(
-      'https://people.googleapis.com/v1/people/me/connections'
-          '?requestMask.includeField=person.names',
-      headers: await _currentUser.authHeaders,
-    );
-    if (response.statusCode != 200) {
-      setState(() {
-        _contactText = "People API gave a ${response.statusCode} "
-            "response. Check logs for details.";
-      });
-      print('People API ${response.statusCode} response: ${response.body}');
-      return;
-    }
-    final Map<String, dynamic> data = json.decode(response.body);
-    final String namedContact = _pickFirstNamedContact(data);
-    setState(() {
-      if (namedContact != null) {
-        _contactText = "I see you know $namedContact!";
-      } else {
-        _contactText = "No contacts to display.";
-      }
-    });
-  }
-  String _pickFirstNamedContact(Map<String, dynamic> data) {
-    final List<dynamic> connections = data['connections'];
-    final Map<String, dynamic> contact = connections?.firstWhere(
-          (dynamic contact) => contact['names'] != null,
-      orElse: () => null,
-    );
-    if (contact != null) {
-      final Map<String, dynamic> name = contact['names'].firstWhere(
-            (dynamic name) => name['displayName'] != null,
-        orElse: () => null,
-      );
-      if (name != null) {
-        return name['displayName'];
-      }
-    }
-    return null;
-  }
+
+
   Future<void> _handleSignOut() => _googleSignIn.disconnect();
-  Future<void> _handleSignIn() async {
-    try {
-      await _googleSignIn.signIn();
-    } catch (error) {
-      print(error);
-    }
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,7 +110,7 @@ class _LogInAppState extends State<LogInApp> {
                     : Rive(artboard: _riveArtboard),
               ),
             ),
-            _currentUser != null? Text('sin logear', style: TextStyle(
+            _currentUser != null? Text('Logeado', style: TextStyle(
               color: Colors.white,
               fontSize: 17,
             )):Text(_contactText ?? '', style: TextStyle(
@@ -163,7 +119,34 @@ class _LogInAppState extends State<LogInApp> {
             )),
             GestureDetector(
               onTap: (){
-                _handleSignIn();
+                _handleSignOut();
+              },
+              child: Card(
+                margin: EdgeInsets.only(right: 40, left: 40),
+                child: Container(
+                  margin: EdgeInsets.all(15),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/google.png',
+                        width: 30,
+                      ),
+                      Expanded(child: Container()),
+                      Container(
+                        margin: EdgeInsets.only(left: 15),
+                        child: Text(
+                          "deslogear con google",
+                        ),
+                      ),
+                      Expanded(child: Container()),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: (){
+                context.read<LoginIn>().login;
               },
               child: Card(
                 margin: EdgeInsets.only(right: 40, left: 40),

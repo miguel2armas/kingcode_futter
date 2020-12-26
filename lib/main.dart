@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kingcode/src/inicio/inicio.dart';
@@ -8,7 +9,9 @@ import 'State/login_state.dart';
 import 'State/theme_state.dart';
 import 'src/login/loginapp.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
     MultiProvider(
       providers: [

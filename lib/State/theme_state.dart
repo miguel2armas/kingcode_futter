@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import '../database/models/theme_model.dart';
-class ThemeState with ChangeNotifier, DiagnosticableTreeMixin {
+class ThemeState with ChangeNotifier {
   bool _themeState = false;
   void themeValueInitApp()async{
     int themecurrent = await DBProviderbase.db.consultDatabaseTheme();
