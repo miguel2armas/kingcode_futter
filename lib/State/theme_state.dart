@@ -22,8 +22,6 @@ class ThemeState with ChangeNotifier {
     DBProviderbase.db.createDatabaseTheme(themeinit);
     print('new database them create');
   }
-
-
   get currentTheme =>_themeState;
   void themechage(bool value){
     _themeState= value;

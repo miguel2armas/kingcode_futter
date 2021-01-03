@@ -24,25 +24,10 @@ class LogInApp extends StatefulWidget {
 }
 
 class _LogInAppState extends State<LogInApp> {
-  GoogleSignInAccount _currentUser;
-  String _contactText;
   Artboard _riveArtboard;
   @override
   void initState() {
     super.initState();
-    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
-      setState(() {
-        _currentUser = account;
-
-      });
-      if (_currentUser != null) {
-        print('logeado ${_currentUser.displayName}');
-        print('logeado ${_currentUser.id}');
-        print('logeado ${_currentUser.email}');
-        print('logeado ${_currentUser.photoUrl}');
-      }
-    });
-    _googleSignIn.signInSilently();
     rootBundle.load('assets/images/code2.riv').then(
       (data) async {
         var file = RiveFile();
@@ -59,7 +44,7 @@ class _LogInAppState extends State<LogInApp> {
   }
 
 
-  Future<void> _handleSignOut() => _googleSignIn.disconnect();
+
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +85,6 @@ class _LogInAppState extends State<LogInApp> {
                 ),
               ],
             ),
-            Expanded(child: Container()),
             Container(
               width: 300,
               height: 300,
@@ -110,43 +94,9 @@ class _LogInAppState extends State<LogInApp> {
                     : Rive(artboard: _riveArtboard),
               ),
             ),
-            _currentUser != null? Text('Logeado', style: TextStyle(
-              color: Colors.white,
-              fontSize: 17,
-            )):Text(_contactText ?? '', style: TextStyle(
-              color: Colors.white,
-              fontSize: 17,
-            )),
             GestureDetector(
               onTap: (){
-                _handleSignOut();
-              },
-              child: Card(
-                margin: EdgeInsets.only(right: 40, left: 40),
-                child: Container(
-                  margin: EdgeInsets.all(15),
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/google.png',
-                        width: 30,
-                      ),
-                      Expanded(child: Container()),
-                      Container(
-                        margin: EdgeInsets.only(left: 15),
-                        child: Text(
-                          "deslogear con google",
-                        ),
-                      ),
-                      Expanded(child: Container()),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: (){
-                context.read<LoginIn>().login;
+                context.read<LoginIn>().logingoogle();
               },
               child: Card(
                 margin: EdgeInsets.only(right: 40, left: 40),
@@ -174,64 +124,43 @@ class _LogInAppState extends State<LogInApp> {
             Container(
               margin: EdgeInsets.all(5),
             ),
-            Card(
-              color: Color.fromRGBO(59, 89, 152, 1),
-              margin: EdgeInsets.only(right: 40, left: 40),
-              child: Container(
-                margin: EdgeInsets.all(15),
-                child: Row(
-                  children: [
-                    Image.asset(
-                      'assets/images/facebookb.png',
-                      width: 30,
-                    ),
-                    Expanded(child: Container()),
-                    Container(
-                      margin: EdgeInsets.only(left: 15),
-                      child: Text(
-                        "Iniciar session con facebook",
-                        style: TextStyle(
-                            color: Colors.white
+            GestureDetector(
+              onTap: (){
+                context.read<LoginIn>().loginfacebook();
+              },
+              child: Card(
+                color: Color.fromRGBO(59, 89, 152, 1),
+                margin: EdgeInsets.only(right: 40, left: 40),
+                child: Container(
+                  margin: EdgeInsets.all(15),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/facebookb.png',
+                        width: 30,
+                      ),
+                      Expanded(child: Container()),
+                      Container(
+                        margin: EdgeInsets.only(left: 15),
+                        child: Text(
+                          "Iniciar session con facebook",
+                          style: TextStyle(
+                              color: Colors.white
+                          ),
                         ),
                       ),
-                    ),
-                    Expanded(child: Container()),
-                  ],
+                      Expanded(child: Container()),
+                    ],
+                  ),
                 ),
               ),
             ),
             Container(
               margin: EdgeInsets.all(5),
             ),
-            Card(
-              color: Colors.red,
-              margin: EdgeInsets.only(right: 40, left: 40),
-              child: Container(
-                margin: EdgeInsets.all(15),
-                child: Row(
-                  children: [
-                    Image.asset(
-                      'assets/images/correo2.png',
-                      width: 30,
-                    ),
-                    Expanded(child: Container()),
-                    Container(
-                      margin: EdgeInsets.only(left: 15),
-                      child: Text(
-                        "Iniciar session con Correo",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    Expanded(child: Container()),
-                  ],
-                ),
-              ),
-            ),Container(
-              margin: EdgeInsets.all(5),
-            ),
             GestureDetector(
               onTap: (){
-                context.read<LoginIn>().login();
+                print('sin cuenta');
               },
               child: Card(
                 color: Color.fromRGBO(15, 172, 21, 1),

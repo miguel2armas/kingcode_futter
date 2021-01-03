@@ -24,6 +24,7 @@ void main() async{
   );
 }
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -48,6 +49,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    context.read<LoginIn>().startlogingoogle();
+    context.read<LoginIn>().loginValueInitApp();
     context.read<ThemeState>().themeValueInitApp();
     initlogin();
     super.initState();
@@ -71,7 +74,6 @@ class _SplashScreenState extends State<SplashScreen> {
           Container(
             margin: EdgeInsets.all(50),
             child: Center(
-
               child: Image.asset('assets/images/kingcode.png',
               ),
             ),
