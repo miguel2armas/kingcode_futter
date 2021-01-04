@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">kingcode</string>
+    <string name="facebook_app_id">227200232142235</string>
+    <string name="fb_login_protocol_scheme">fb227200232142235</string>
+    <string name="facebook_application_id" translatable="false">227200232142235</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fb227200232142235</string>
+    <string name="facebook_client_token">85d3351a475cba51331a95631db7e20d</string>
+
+</resources>

@@ -77,6 +77,7 @@ GoogleSignInAccount _currentUser;
 
 
 Future<Null> _loginFacebook() async {
+  facebookSignIn.loginBehavior = FacebookLoginBehavior.webViewOnly;//cambiar cuando seste en desarrollo
   final FacebookLoginResult result =
   await facebookSignIn.logIn(['email']);
 
